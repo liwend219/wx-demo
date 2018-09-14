@@ -1,0 +1,18 @@
+<!--pages/index/memo/memo.wxml-->
+<view class="page">
+  <i-panel title="基础用法">
+      <i-input value="{{ title }}" type='text' title="收货人" autofocus placeholder="名字" />
+      <view class="memo-textarea">
+        <text style='height:200px;min-width:65px;padding-right:10px;'>详细地址</text>
+        <textarea value="{{content}}" style='height:200px;' maxlength="200"></textarea>
+      </view>
+  </i-panel>
+    <view class="page__bd">
+        <view class="weui-btn-area">
+            <picker class="weui-btn" mode="date" value="{{date}}" start="2000-01-01" end="{{endDate}}" bindchange="bindDateChange">
+                <i-cell title="选择日期" value="{{date}}" is-link></i-cell>
+            </picker>
+        </view>
+    </view>
+    <i-button bind:click="saveMemo" type="primary">保存</i-button>
+</view>

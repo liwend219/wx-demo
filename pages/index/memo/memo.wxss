@@ -1,0 +1,11 @@
+/* pages/index/memo/memo.wxss */
+.memo-textarea{
+  width:100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding:7px 15px;
+  background: #fff;
+  font-size:14px;
+  color:#495060;
+}

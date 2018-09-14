@@ -1,0 +1,47 @@
+<!--index.wxml-->
+<!-- <view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+    <button bindtap="totest">转场</button>
+  </view>
+</view> -->
+<view>
+  <i-tabs current="{{ current }}" bindchange="handleChange">
+      <i-tab key="tab1" title="11111"></i-tab>
+      <i-tab key="tab2" title="22222" count="3"></i-tab>
+      <i-tab key="tab3" title="33333" dot></i-tab>
+  </i-tabs>
+  <view class="content">
+    <i-card class="content-item" wx:for="{{memoArr}}" wx:key="{{item.index}}" title="卡片标题" extra="09.14" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
+        <view slot="content">内容不错内容不错内容不错内容不错内容不错内容不错内容不错内容不错内容不错</view>
+        <view slot="footer">
+            <i-swipeout i-class="i-swipeout-demo-item" operateWidth="{{180}}">
+                <view style='line-height:100%;' slot="content">
+                  <text>
+                    左滑可进行删改操作
+                  </text>
+                </view>
+                <view slot="button"  class="set-cell">
+                    <view class="set-icon"><i-icon size="32" type="brush_fill"></i-icon></view>
+                    <view class="set-icon"><i-icon size="32" type="delete_fill"></i-icon></view>
+                    <view class="set-icon"><i-icon size="32" type="share_fill"></i-icon></view>
+                </view>
+            </i-swipeout>
+        </view>
+        
+    </i-card>
+  </view>
+  <i-load-more tip="暂无数据" loading="{{ false }}" />
+  <view class="add-btn" bindtap="newMemo">
+    +
+  </view>
+  
+  
+</view>

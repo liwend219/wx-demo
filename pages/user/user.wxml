@@ -1,0 +1,16 @@
+<!--pages/test2/test2.wxml-->
+<view class="page">
+  <view class="top-box" style="background: url('../../image/top-img.jpg') no-repeat;background-size: 100%">
+    <image class="user-img" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <view class="user-name">
+      <text class="user-nickname">{{userInfo.nickName}}</text>
+      <image class="sex-img" src="{{userInfo.gender==1?'../../image/sex_m.png':'../../image/sex_w.png'}}"></image>
+    </view>
+  </view>
+  <i-panel title="基础用法">
+      <i-input value="{{ value1 }}" title="签名" autofocus placeholder="一句话签名" />
+      <i-input value="{{ value2 }}" type="number" title="联系电话" placeholder="请输入手机号" />
+      <i-input value="{{ value3 }}" type="textarea" title="详细地址" placeholder="请输入详细地址(最多50字)" maxlength="50" />
+      <i-input value="{{ value4 }}" title="用户信息"  />
+  </i-panel>
+</view>
