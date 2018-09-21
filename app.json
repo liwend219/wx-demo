@@ -1,11 +1,12 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/index/memo/memo",
+    "pages/user/user",
+    "pages/index/diary/diary",
     "pages/index/picker/picker",
     "pages/logs/logs",
-    "pages/test/test",
-    "pages/user/user"
+    "pages/test/test"
+    
     
   ],
   "window": {

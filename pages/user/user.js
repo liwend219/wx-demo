@@ -1,4 +1,5 @@
 // pages/test2/test2.js
+var http = require('../../libs/http.js')
 const app = getApp()
 Page({
 
@@ -17,9 +18,48 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(http.roots)
+    var self = this
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          console.log(res.code)
+          self.init()
+          // code: 011gZwvf1L9McA0mYjxf14hyvf1gZwvm
+          wx.request({
+            url: http.roots +'saveOpenID',
+            method:'POST',
+            data:{
+              code:res.code
+            },
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            success: function (res) {
+              wx.setStorage({
+                key:'openid',
+                data: res.data.openid
+              })
+              // wx.getStorage({
+              //   key: 'openid',
+              //   success:function(result){
+              //     console.log('jha')
+              //     console.log(result.data)
+              //   }
+              // })
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    });
+  },
+  init:function(){
     wx.getUserInfo({
       success: res => {
         app.globalData.userInfo = res.userInfo
+        console.log(res)
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
@@ -27,7 +67,6 @@ Page({
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

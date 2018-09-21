@@ -13,35 +13,67 @@
   </view>
 </view> -->
 <view>
-  <i-tabs current="{{ current }}" bindchange="handleChange">
+  <i-tabs current="{{ current }}" bindchange="handleChange" fixed class="tabs">
       <i-tab key="tab1" title="11111"></i-tab>
       <i-tab key="tab2" title="22222" count="3"></i-tab>
       <i-tab key="tab3" title="33333" dot></i-tab>
   </i-tabs>
   <view class="content">
-    <i-card class="content-item" wx:for="{{memoArr}}" wx:key="{{item.index}}" title="卡片标题" extra="09.14" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
-        <view slot="content">内容不错内容不错内容不错内容不错内容不错内容不错内容不错内容不错内容不错</view>
-        <view slot="footer">
-            <i-swipeout i-class="i-swipeout-demo-item" operateWidth="{{180}}">
-                <view style='line-height:100%;' slot="content">
-                  <text>
-                    左滑可进行删改操作
-                  </text>
-                </view>
-                <view slot="button"  class="set-cell">
-                    <view class="set-icon"><i-icon size="32" type="brush_fill"></i-icon></view>
-                    <view class="set-icon"><i-icon size="32" type="delete_fill"></i-icon></view>
-                    <view class="set-icon"><i-icon size="32" type="share_fill"></i-icon></view>
-                </view>
-            </i-swipeout>
+    <view class="diary-item" wx:for="{{diaryArr.data}}" wx:key="{{item.index}}" wx:if="{{current=='tab1'}}">
+      <view class="diary-1">
+          <view class="diary-1-l">
+            <view class="diary-l-img">
+              <image style='width:100%;height:100%;' src="https://i.loli.net/2017/08/21/599a521472424.jpg"></image>
+            </view>
+            <view style='margin-left:20rpx;'>{{item.title}}</view>
+          </view>
+          <view class="diary-1-r">{{item.date}}</view>
+      </view>
+      <view class="diary-2">
+          <text>{{item.content}}</text>
+      </view>
+      <view class="diary-3">
+      <!-- bindtap="share" -->
+      <button class="share-btn" open-type="share">
+        <i-icon size="20" type="share_fill" data-item="{{item}}"/>
+      </button>
+      <i-icon size="20" type="trash_fill" data-item="{{item}}" bindtap="deletes"/>
+      <i-icon size="20" type="createtask_fill" data-item="{{item}}" bindtap="modify"/>
+      </view>
+    </view>
+
+    <view class="memo-item" wx:for="{{memoArr}}" wx:key="{{item.id}}" wx:if="{{current=='tab2'}}">
+        <view class="memo-1">
+            <i-checkbox  checked="{{item.complete}}" bind:change="changeMemo" data-idx="{{item.id}}" position="left" value="{{item.complete?'已完成':'未完成'}}" >
+            </i-checkbox>
+            <view>
+                2018-02-03
+            </view>
         </view>
-        
-    </i-card>
+        <view class="memo-2" style="{{item.complete?'text-decoration:line-through;color:rgb(156, 156, 156)':''}}">
+            阿卡减肥哈尽快恢复快快乐乐了就哭了
+        </view>
+        <view class="diary-3">
+      <!-- bindtap="share" -->
+      <button class="share-btn" open-type="share">
+        <i-icon size="20" type="share_fill" data-item="{{item}}"/>
+      </button>
+      <i-icon size="20" type="trash_fill" data-item="{{item}}" bindtap="deletes"/>
+      <i-icon size="20" type="createtask_fill" data-item="{{item}}" bindtap="modify"/>
+      </view>
+    </view>
+    <view style='margin-top:58px'><i-load-more tip="没有更多数据啦" loading="{{ false }}" /></view>
   </view>
-  <i-load-more tip="暂无数据" loading="{{ false }}" />
-  <view class="add-btn" bindtap="newMemo">
+
+    
+  
+  <view class="add-btn" bindtap="newDiary">
     +
   </view>
   
-  
+  <!-- 确认对话框 -->
+  <i-modal title="删除确认" visible="{{ showBox }}" actions="{{ actions }}" bind:click="confimDelete">
+    <view>删除后无法恢复哦</view>
+  </i-modal>
+  <i-toast id="toast" />
 </view>

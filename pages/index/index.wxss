@@ -4,7 +4,10 @@
   flex-direction: column;
   align-items: center;
 }
-
+.tabs{
+    /* position: fixed;
+    top:0; */
+}
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
@@ -20,7 +23,7 @@
   margin-top: 200px;
 }
 .add-btn{
-  position: absolute;
+  position: fixed;
   width:90rpx;
   height:90rpx;
   line-height:85rpx;
@@ -28,16 +31,17 @@
   font-weight: 300;
   border-radius:50%;
   bottom:100rpx;
-  background: #fff;
+  background: #2db7f5;
   right:50rpx;
   text-align: center;
+  color:#fff;
 }
 .add-btn:hover{
-  background: rgb(102, 168, 223);
+  background: #2db7f5;
   color:#fff;
 }
 .content{
-  /* margin:20rpx 0; */
+  margin-top:50px;
 }
 .content-item{
   margin:5rpx;
@@ -52,4 +56,83 @@
 }
 .set-icon{
   color:#fff;
+}
+
+.diary-item{
+  width:85%;
+  margin:20rpx auto;
+  background: #fff;
+  padding:30rpx 30rpx 20rpx;
+  font-size:27rpx;
+  border-radius:15rpx;
+}
+.diary-1{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  /* padding:30rpx; */
+}
+.diary-1-l{
+  /* width: 40%; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.diary-l-img{
+  width: 100rpx;
+  height:100rpx;
+  border-radius:50%;
+  overflow: hidden;
+}
+.diary-1-r{
+  /* text-align: right; */
+}
+.diary-2{
+  padding:20rpx 0;
+  color:rgb(77, 77, 77);
+  border-bottom:1rpx solid #eee;
+}
+.diary-3{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding:20rpx 0 0;
+  color:#2d8cf0;
+}
+.share-btn{
+    margin-left:0;
+    margin-right:0;
+    padding-left:0;
+    padding-right:0;
+    line-height:0;
+    color:#2d8cf0;
+    background-color:#fff;
+
+}
+button::after{
+    border:none;
+}
+button {
+  background-color: #fff;
+}
+
+.memo-item{
+    width:85%;
+    margin:20rpx auto;
+    background: #fff;
+    padding:30rpx 30rpx 20rpx;
+    font-size:27rpx;
+    border-radius:15rpx;
+}
+/* memo */
+.memo-1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom:1rpx solid #eee;
+}
+.memo-2{
+    padding:20rpx 0;
+    color:rgb(77, 77, 77);
 }

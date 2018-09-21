@@ -1,0 +1,20 @@
+
+<view class="page">
+  <i-panel title="基础用法">
+      <i-input value="{{ info.title }}" type='text' title="收货人" bind:change="titleChange" autofocus placeholder="名字" />
+      <view class="memo-textarea">
+        <text style='height:200px;min-width:65px;padding-right:10px;'>内容</text>
+        <textarea value="{{info.content}}" style='height:200px;' bindinput="contentChange" placeholder="名字" maxlength="200"></textarea>
+      </view>
+  </i-panel>
+    <view class="page__bd">
+        <view class="weui-btn-area">
+            <picker class="weui-btn" mode="date" value="{{info.date}}" start="2000-01-01" end="{{endDate}}" bindchange="bindDateChange">
+                <i-cell title="选择日期" value="{{info.date}}" is-link></i-cell>
+            </picker>
+        </view>
+    </view>
+    <i-button bind:click="saveDiary" type="primary">保存</i-button>
+
+    <i-toast id="toast" />
+</view>
