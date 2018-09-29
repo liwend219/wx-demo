@@ -1,7 +1,8 @@
 {
   "pages": [
+      "pages/user/user",
     "pages/index/index",
-    "pages/user/user",
+    
     "pages/index/diary/diary",
     "pages/index/picker/picker",
     "pages/logs/logs",

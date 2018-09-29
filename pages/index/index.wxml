@@ -19,7 +19,7 @@
       <i-tab key="tab3" title="33333" dot></i-tab>
   </i-tabs>
   <view class="content">
-    <view class="diary-item" wx:for="{{diaryArr.data}}" wx:key="{{item.index}}" wx:if="{{current=='tab1'}}">
+    <view class="diary-item" wx:for="{{diaryArr.diary}}" wx:key="{{item.index}}" wx:if="{{current=='tab1'}}">
       <view class="diary-1">
           <view class="diary-1-l">
             <view class="diary-l-img">

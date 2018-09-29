@@ -40,14 +40,18 @@ Page({
         ["info.date"]: d.getFullYear() + '-' + m + '-' + d.getDate(),
         endDate: d.getFullYear() + '-' + m + '-' + d.getDate()
       })
+      
+    }
       var self = this
       wx.getStorage({
-        key: 'openid',
-        success: function (result) {
-          self.data.info.openid = result.data
-        }
+          key: 'openid',
+          success: function (result) {
+              // self.data.info.openid = result.data
+              self.setData({
+                  ["info.openid"]: result.data
+              })
+          }
       })
-    }
     this.setData({
       endDate: d.getFullYear() + '-' + m + '-' + d.getDate()
     })
@@ -109,19 +113,24 @@ Page({
   },
   saveDiary:function(){
     if(this.data.info.title == ""){
-      $Toast({
-        content: '标题不可为空',
-        type: 'warning'
-      });
-      return 
+        $Toast({
+            content: '标题不可为空',
+            type: 'warning'
+        });
+        return 
     }else if(this.data.info.content == ""){
-      $Toast({
-        content: '内容不可为空',
-        type: 'warning'
-      });
-      return 
+        $Toast({
+            content: '内容不可为空',
+            type: 'warning'
+        });
+        return 
+    }else if(this.data.info.openid == ""){
+        $Toast({
+            content: '请先登录哦',
+            type: 'warning'
+        });
+        return
     }
-    console.log(this.data.info.openid)
     wx.request({
       url: http.roots + 'saveDiary',
       method: 'POST',

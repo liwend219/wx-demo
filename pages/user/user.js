@@ -17,55 +17,85 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    console.log(http.roots)
-    var self = this
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          console.log(res.code)
-          self.init()
-          // code: 011gZwvf1L9McA0mYjxf14hyvf1gZwvm
-          wx.request({
-            url: http.roots +'saveOpenID',
-            method:'POST',
-            data:{
-              code:res.code
+    onLoad: function (options) {
+        var self = this
+        wx.getUserInfo({
+            success: res => {
+                console.log(res)
+                app.globalData.userInfo = res.userInfo
+                console.log(res)
+                this.setData({
+                    userInfo: res.userInfo,
+                    hasUserInfo: true
+                })
             },
-            header: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            success: function (res) {
-              wx.setStorage({
-                key:'openid',
-                data: res.data.openid
-              })
-              // wx.getStorage({
-              //   key: 'openid',
-              //   success:function(result){
-              //     console.log('jha')
-              //     console.log(result.data)
-              //   }
-              // })
+            fail: err => {
+                console.log(err)
             }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }
-    });
+        })
+    // this.init()
+    // wx.login({
+    //     success: function (res) {
+    //         if (res.code) {
+    //         console.log(res.code)
+    //             wx.getUserInfo({
+    //                 success: res => {
+    //                     console.log(res)
+    //                     app.globalData.userInfo = res.userInfo
+    //                     console.log(res)
+    //                     this.setData({
+    //                         userInfo: res.userInfo,
+    //                         hasUserInfo: true
+    //                     })
+    //                 },
+    //                 fail: err => {
+    //                     console.log(err)
+    //                 }
+    //             })
+    //         self.init()
+    //         // code: 011gZwvf1L9McA0mYjxf14hyvf1gZwvm
+    //           wx.request({
+    //             url: http.roots +'saveOpenID',
+    //             method:'POST',
+    //             data:{
+    //               code:res.code
+    //             },
+    //             header: {
+    //               "Content-Type": "application/x-www-form-urlencoded"
+    //             },
+    //             success: function (res) {
+    //               wx.setStorage({
+    //                 key:'openid',
+    //                 data: res.data.openid
+    //               })
+    //             }
+    //           })
+    //         }else{
+    //             console.log('登录失败！' + res.errMsg)
+    //         }
+    //     },
+    //     fail:function (err) {
+    //         console.log("err")
+    //     }
+    // });
   },
   init:function(){
-    wx.getUserInfo({
-      success: res => {
-        app.globalData.userInfo = res.userInfo
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+      console.log('haha')
+        wx.getUserInfo({
+            success: res => {
+                console.log(res)
+                app.globalData.userInfo = res.userInfo
+                console.log(res)
+                this.setData({
+                userInfo: res.userInfo,
+                hasUserInfo: true
+                })
+            },
+            fail: err => {
+                console.log(err)
+            }
         })
-      }
-    })
+        console.log(this.data.userInfo)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
